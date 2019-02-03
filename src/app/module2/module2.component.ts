@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { WebService } from '../_service/web.service';
+import { CountriesService } from '../_service/countries.service';
+import { Countries } from '../_models/CountriesModel';
 
 @Component({
   selector: 'app-module2',
@@ -8,8 +9,12 @@ import { WebService } from '../_service/web.service';
   styleUrls: ['./module2.component.scss']
 })
 export class Module2Component implements OnInit {
-  constructor(private _http: WebService) { }
+  constructor(private _countries: CountriesService) { }
 
-  ngOnInit() { }
+  public countries: Countries = { list: [] };
+
+  ngOnInit() {
+    this._countries.CountriesSource.subscribe(source => this.countries = source);
+  }
 
 }

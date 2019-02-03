@@ -11,11 +11,19 @@ const HttpOptions = {
 export class WebService {
   constructor(private _httpClient: HttpClient) { }
 
-  public Get<TResponse>(url: string): Observable<TResponse> {
-    return this._httpClient.get<TResponse>(url, HttpOptions);
+  public Get<TResponse>(url: string, httpHeaderEnabled: boolean = true): Observable<TResponse> {
+    if (httpHeaderEnabled) {
+      return this._httpClient.get<TResponse>(url, HttpOptions);
+    } else {
+      return this._httpClient.get<TResponse>(url);
+    }
   }
 
-  public Post<TResponse, TRequest>(url: string, body?: TRequest): Observable<TResponse> {
-    return this._httpClient.post<TResponse>(url, body, HttpOptions);
+  public Post<TResponse, TRequest>(url: string, body?: TRequest, httpHeaderEnabled: boolean = true): Observable<TResponse> {
+    if (httpHeaderEnabled) {
+      return this._httpClient.post<TResponse>(url, body, HttpOptions);
+    } else {
+      return this._httpClient.post<TResponse>(url, body);
+    }
   }
 }

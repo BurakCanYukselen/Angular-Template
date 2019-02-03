@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { Module1Module } from './module1/module1.module';
 import { Module2Module } from './module2/module2.module';
 import { WebService } from './_service/web.service';
+import { CountriesService } from './_service/countries.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { WebService } from './_service/web.service';
     Module2Module,
   ],
   providers: [
-    WebService
+    WebService,
+    CountriesService,
   ],
   bootstrap: [AppComponent]
 })
